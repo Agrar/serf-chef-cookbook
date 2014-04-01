@@ -7,3 +7,5 @@ normal[:serf][:package_source] = "https://dl.bintray.com/mitchellh/serf/#{normal
 normal[:serf][:agent][:snapshot_path] = '/var/serf/snapshot'
 normal[:serf][:agent][:event_handlers] = []
 normal[:serf][:agent][:tags] = {}
+
+normal[:serf][:agent_arguments] = "-config-file=/etc/serf/agent.config -config-dir=/etc/serf/config.d/"

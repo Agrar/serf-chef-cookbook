@@ -42,6 +42,13 @@ directory "/etc/serf" do
   action :create
 end
 
+directory "/etc/serf/config.d/" do
+  owner "serf"
+  group "serf"
+  recursive true
+  action :create
+end
+
 template "/etc/serf/agent.config" do
   source  "serf_agent.json.erb"
   group "serf"
