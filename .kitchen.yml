@@ -28,3 +28,12 @@ suites:
         agent:
           node_name: server1
           interface: eth1
+  - name: handler
+    run_list:
+      - recipe[serf::default]
+    attributes:
+      serf:
+        agent:
+          log_level: debug
+          node_name: server1
+          interface: eth1

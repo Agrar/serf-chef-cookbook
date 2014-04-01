@@ -20,7 +20,6 @@ describe "multi config serf service" do
     it { should_not return_stdout /.*"model": "mustang".*/ }
   end
 
-
   car = {}
   car[:tags] = {}
   car[:tags][:make] = "ford"
@@ -44,16 +43,29 @@ describe "multi config serf service" do
     it { should return_stdout /.*"model": "mustang".*/ }
   end
 
-  describe file("/var/serf/snapshot") do
-     it { should be_file }
-     it { should be_owned_by "serf" }
-     it { should be_grouped_into "serf" }
+  location = {}
+  location[:tags] = {}
+  location[:tags][:city] = "centerville"
+  location[:tags][:state] = "ohio"
+
+  File.open("/etc/serf/config.d/location.json", "w") { |f|
+    f.write(JSON.pretty_generate(location.to_hash))
+  }
+
+  describe command("service serf restart") do
+    it { should return_stdout /.*stop.*/ }
+    it { should return_stdout /.*start\/running, process \d+.*/ }
   end
 
-  describe file("/var/log/upstart/serf.log") do
-    it { should be_file }
-    it { should be_owned_by "root" }
-    it { should be_grouped_into "root" }
+  describe service("serf") do
+    it { should be_running }
+  end
+
+  describe command("serf members -format=json") do
+    it { should return_stdout /.*"make": "ford".*/ }
+    it { should return_stdout /.*"model": "mustang".*/ }
+    it { should return_stdout /.*"city": "centerville".*/ }
+    it { should return_stdout /.*"state": "ohio".*/ }
   end
 
 end
