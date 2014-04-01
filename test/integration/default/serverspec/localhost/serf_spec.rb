@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe "serf agent" do
+
   it "should have a serf user" do
     expect(user "serf").to exist
   end

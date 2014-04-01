@@ -20,3 +20,13 @@ suites:
         agent:
           node_name: server1
           interface: eth1
+  - name: multi
+    run_list:
+      - recipe[serf::default]
+    attributes:
+      serf:
+        service_start: false
+        service_enable: false
+        agent:
+          node_name: server1
+          interface: eth1
