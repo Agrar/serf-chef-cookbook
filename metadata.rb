@@ -8,3 +8,4 @@ version          '0.6.0'
 
 depends 'ark'
 depends 'apt'
+depends 'logrotate'

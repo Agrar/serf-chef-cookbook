@@ -24,4 +24,9 @@ describe "serf service" do
      it { should be_grouped_into "serf" }
   end
 
+  describe file("/var/log/upstart/serf.log") do
+    it { should be_file }
+    it { should be_owned_by "root" }
+    it { should be_grouped_into "root" }
+  end
 end
