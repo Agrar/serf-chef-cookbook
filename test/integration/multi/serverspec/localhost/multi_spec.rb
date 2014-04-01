@@ -10,12 +10,12 @@ describe "multi config serf service" do
     its(:content) { should match /\/usr\/local\/bin\/serf/ }
   end
 
-  describe service('serf') do
+  describe service("serf") do
     it { should be_enabled }
     it { should be_running }
   end
 
-  describe command('serf members -format=json') do
+  describe command("serf members -format=json") do
     it { should_not return_stdout /.*"make": "ford".*/ }
     it { should_not return_stdout /.*"model": "mustang".*/ }
   end
@@ -35,11 +35,11 @@ describe "multi config serf service" do
     it { should return_stdout /.*start\/running, process \d+.*/ }
   end
 
-  describe service('serf') do
+  describe service("serf") do
     it { should be_running }
   end
 
-  describe command('serf members -format=json') do
+  describe command("serf members -format=json") do
     it { should return_stdout /.*"make": "ford".*/ }
     it { should return_stdout /.*"model": "mustang".*/ }
   end

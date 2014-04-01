@@ -41,8 +41,6 @@ file "/usr/local/bin/serf" do
   group "serf"
 end
 
-# /etc/serf/
-
 directory "/etc/serf" do
   owner "serf"
   group "serf"
@@ -65,8 +63,6 @@ template "/etc/serf/agent.config" do
   variables(:agent_json => JSON.pretty_generate(node[:serf][:agent].to_hash))
   backup false
 end
-
-# /var/serf/
 
 directory "/var/serf" do
   owner "serf"
