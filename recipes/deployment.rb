@@ -1,3 +1,11 @@
+#
+# Cookbook Name:: serf
+# Recipe:: deployment
+#
+# Copyright (C) 2014 Agrar <contact@agrar.io>
+# 
+# This project and its contents are open source under the MIT license.
+#
 
 include_recipe "logrotate"
 

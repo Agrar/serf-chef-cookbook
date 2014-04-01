@@ -1,3 +1,11 @@
+#
+# Cookbook Name:: serf
+# Recipe:: agent
+#
+# Copyright (C) 2014 Agrar <contact@agrar.io>
+# 
+# This project and its contents are open source under the MIT license.
+#
 
 include_recipe "apt"
 
@@ -50,7 +58,7 @@ directory "/etc/serf/config.d/" do
 end
 
 template "/etc/serf/agent.config" do
-  source  "serf_agent.json.erb"
+  source "serf_agent.json.erb"
   group "serf"
   owner "serf"
   mode 00664
