@@ -1,0 +1,8 @@
+description "serf"
+author "Nick Gerakines <nick@agrar.io>"
+
+start on (net-device-up and local-filesystems and runlevel [2345])
+stop on (runlevel [016])
+
+chdir /var/serf/
+exec su serf -c '/usr/local/bin/serf agent -config-file=/etc/serf/agent.config'
